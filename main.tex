@@ -1,0 +1,63 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc} % File encoding, you should try to stick to utf8.
+\usepackage{microtype} % Improve typesetting for pdflatex
+\usepackage[parfill]{parskip} % Empty line before paragraphs
+\usepackage{csquotes}
+\usepackage{hyperref} % Make URLs, page numbers, section references clickable
+\usepackage{mathtools}
+\usepackage{minted} % For source code highlighting (requires python and pygments)
+\usepackage{graphicx}
+\usepackage{textcomp} % For copyright symbol and such
+\usepackage{wallpaper} % To create the coverpage
+\usepackage[english]{babel}
+\usepackage[style=ieee, backend=biber]{biblatex}
+
+\addbibresource{bibliography.bib}
+
+% Change chapter style to be similar as sections but larger
+\usepackage{titlesec}
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{20pt}{}
+
+\begin{document}
+\pagenumbering{gobble} % Don't show any page numbers
+\hypersetup{pageanchor=false, % Deactivate links to page numbers
+            linktoc=all} % Make page numbers in TOC clickable
+
+% Title page
+\input{title}
+
+% Copyright page
+\input{copyright}
+\clearpage
+
+% Abstract
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+% Acknowledgements
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+\input{acknowledgements}
+\end{abstract}
+
+% Table of contents
+\tableofcontents
+\clearpage
+
+% Thesis starts here
+\hypersetup{pageanchor=true} % Activate links to page numbers
+\pagenumbering{arabic} % Start showing page numbers (from 1)
+
+\input{introduction}
+
+% Bibliography
+\nocite{*} % Add everything from the bibliography TODO: Remove
+\printbibliography[heading=bibintoc]
+
+% Appendices
+\appendix
+\input{data}
+
+\end{document}
